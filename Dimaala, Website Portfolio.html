@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariane Dimaala · Student Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f9fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        body.dark {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark .card,
+        body.dark .project-item,
+        body.dark .cert-item,
+        body.dark .exp-item,
+        body.dark .skill-tag {
+            background-color: #1e293b;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+
+        body.dark nav {
+            background-color: #0f172a;
+            border-bottom-color: #1e293b;
+        }
+
+        body.dark .nav-links a {
+            color: #cbd5e1;
+        }
+
+        body.dark .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        body.dark .btn-outline {
+            border-color: #475569;
+            color: #cbd5e1;
+        }
+
+        body.dark footer {
+            border-top-color: #1e293b;
+            color: #94a3b8;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 64px 0;
+        }
+
+        /* ---------- header / nav ---------- */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            background-color: rgba(249, 250, 252, 0.85);
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        body.dark header {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-bottom-color: #1e293b;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 0 24px;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+            color: #2563eb;
+            white-space: nowrap;
+        }
+
+        body.dark .logo {
+            color: #60a5fa;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1e293b;
+            font-size: 0.88rem;
+            transition: color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid #cbd5e1;
+            border-radius: 40px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #1e293b;
+            transition: 0.2s;
+        }
+
+        body.dark .theme-toggle {
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        /* ---------- buttons ---------- */
+        .btn {
+            display: inline-block;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #1e293b;
+            border: 1.5px solid #cbd5e1;
+            box-shadow: none;
+            margin-left: 12px;
+        }
+
+        .btn-outline:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+            transform: translateY(-2px);
+        }
+
+        body.dark .btn-outline:hover {
+            background: #1e293b;
+        }
+
+        /* ---------- home ---------- */
+        #home {
+            padding-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .home-grid {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .home-content {
+            flex: 1 1 320px;
+        }
+
+        .home-content .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        body.dark .badge {
+            background: #1e3a8a;
+            color: #bfdbfe;
+        }
+
+        .home-content h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .home-content p {
+            font-size: 1.1rem;
+            color: #475569;
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+
+        body.dark .home-content p {
+            color: #94a3b8;
+        }
+
+        .home-avatar {
+            flex: 1 1 260px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar-placeholder {
+            width: 240px;
+            height: 240px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.4rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            box-shadow: 0 25px 30px -10px rgba(37, 99, 235, 0.3);
+            text-align: center;
+        }
+
+        /* ---------- section headings ---------- */
+        .section-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #2563eb;
+            border-radius: 4px;
+        }
+
+        body.dark .section-title::after {
+            background: #3b82f6;
+        }
+
+        /* ---------- cards ---------- */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 28px 32px;
+            box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+        }
+
+        .about-card {
+            max-width: 820px;
+        }
+
+        .about-card p {
+            margin-bottom: 16px;
+            color: #334155;
+        }
+
+        body.dark .about-card p {
+            color: #cbd5e1;
+        }
+
+        /* skills */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 8px 22px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .skill-tag:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 16px;
+        }
+
+        .project-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 24px;
+            transition: 0.2s;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
+            border-color: #b0c4de;
+        }
+
+        .project-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+
+        .project-role {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #7c3aed;
+            background: #f3e8ff;
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
+        body.dark .project-role {
+            background: #4c1d95;
+            color: #ddd6fe;
+        }
+
+        .project-item p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        body.dark .project-item p {
+            color: #94a3b8;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .project-tags span {
+            background: #eff6ff;
+            color: #1e40af;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+
+        body.dark .project-tags span {
+            background: #1e3a8a;
+            color: #bfdbfe;
+        }
+
+        .project-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2563eb;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* certifications / coursework */
+        .cert-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cert-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 20px 26px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: 0.1s;
+        }
+
+        .cert-icon {
+            font-size: 1.8rem;
+            color: #2563eb;
+            width: 48px;
+            text-align: center;
+            padding-top: 4px;
+        }
+
+        body.dark .cert-icon {
+            color: #60a5fa;
+        }
+
+        .cert-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+
+        .cert-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        body.dark .cert-item p {
+            color: #94a3b8;
+        }
+
+        .cert-sub {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+
+        .cert-group-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 28px;
+            margin-bottom: 16px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        body.dark .cert-group-title {
+            color: #e2e8f0;
+        }
+
+        /* experience */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .exp-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 24px 28px;
+            transition: 0.1s;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .exp-header h3 {
+            font-size: 1.2rem;
+        }
+
+        .exp-date {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2563eb;
+            background: #dbeafe;
+            padding: 4px 14px;
+            border-radius: 40px;
+        }
+
+        body.dark .exp-date {
+            background: #1e3a8a;
+            color: #bfdbfe;
+        }
+
+        .exp-sub {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        body.dark .exp-sub {
+            color: #94a3b8;
+        }
+
+        .exp-item p {
+            color: #334155;
+        }
+
+        body.dark .exp-item p {
+            color: #cbd5e1;
+        }
+
+        /* contact */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 2 1 280px;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        body.dark .contact-info p {
+            color: #cbd5e1;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            background: #ffffff;
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            transition: 0.2s;
+        }
+
+        body.dark .contact-links a {
+            background: #1e293b;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+
+        .contact-links a:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        body.dark .contact-links a:hover {
+            background: #1e3a8a;
+        }
+
+        /* footer */
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 12px;
+            }
+            .nav-links a {
+                font-size: 0.78rem;
+            }
+            .logo {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: inherit;
+                flex-direction: column;
+                align-items: center;
+                padding: 24px 0;
+                gap: 20px;
+                border-bottom: 1px solid #e2e8f0;
+                backdrop-filter: blur(8px);
+                background-color: rgba(249, 250, 252, 0.95);
+            }
+
+            body.dark .nav-links {
+                background-color: rgba(15, 23, 42, 0.95);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .home-content h1 {
+                font-size: 2rem;
+            }
+
+            .avatar-placeholder {
+                width: 190px;
+                height: 190px;
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .home-grid {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .home-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+
+            .contact-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cert-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .exp-header {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <nav>
+            <div class="logo">Mariane Dimaala</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Tech Stack</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- ========== HOME ========== -->
+        <section id="home">
+            <div class="home-grid">
+                <div class="home-content">
+                    <span class="badge">🎓 Student Programmer & Game Designer</span>
+                    <h1>Ma. Mariane Bautista Dimaala</h1>
+                    <p>I'm a student learning the ropes of programming — one line of code at a time. I've explored Python, Java, C++, and web development through my courses, and I'm an active member of JPCS DWCC.</p>
+                    <div>
+                        <a href="#projects" class="btn">See my work</a>
+                        <a href="#contact" class="btn btn-outline">Say hello</a>
+                    </div>
+                </div>
+                <div class="home-avatar">
+                    <div class="avatar-placeholder">MMBD</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== ABOUT ========== -->
+        <section id="about">
+            <h2 class="section-title">About me</h2>
+            <div class="card about-card">
+                <p>Hi! I'm Mariane, a student who fell in love with programming. I've taken <strong>Computer Programming 1 & 2 (Python and Java)</strong>, <strong>Discrete Math</strong>, <strong>HCI 1 & 2 (HTML, CSS, JavaScript)</strong>, <strong>OOP 1</strong>, <strong>Data Structures & Algorithms</strong>, and <strong>Intro to Computing (C++)</strong>.</p>
+                <p>I enjoy building small projects to practice what I learn — whether it's a simple game in Python, a Java console app, or a website like this one. One of my favorite projects was being the <strong>Game Designer</strong> for the <em>DWCC Memory Game</em>, a school project where I helped design the levels, rules, and overall player experience.</p>
+                <p>I'm also a proud member of the <strong>Junior Philippine Computer Society (JPCS) – DWCC Chapter</strong>, where I've joined several IT webinars on topics like ethical hacking, mobile robotics, AI, and cybersecurity. These talks keep me inspired and remind me why I love tech.</p>
+                <p>When I'm not studying, I like to sketch, read, and tinker with code just for fun. I'm still a student, but I'm proud of how far I've come!</p>
+            </div>
+        </section>
+
+        <!-- ========== TECH STACK / SKILLS ========== -->
+        <section id="skills">
+            <h2 class="section-title">Tech Stack & Skills</h2>
+            <div class="card" style="padding: 24px 32px;">
+                <p style="margin-bottom: 8px; color: #475569;">Languages & tools I've learned through my courses:</p>
+                <div class="skills-wrapper">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">OOP</span>
+                    <span class="skill-tag">Data Structures</span>
+                    <span class="skill-tag">Algorithms</span>
+                    <span class="skill-tag">Discrete Math</span>
+                    <span class="skill-tag">HCI Principles</span>
+                    <span class="skill-tag">Game Design</span>
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Problem Solving</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PROJECTS ========== -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+
+                <!-- DWCC Memory Game -->
+                <div class="project-item">
+                    <h3>DWCC Memory Game</h3>
+                    <span class="project-role">🎮 Game Designer</span>
+                    <p>A pixel-art memory matching game built for Divine Word College of Calapan. Players flip cards to match DWCC departments and organizations across 5 difficulty levels with lives, timer, and scoring.</p>
+                    <div class="project-tags">
+                        <span>Game Design</span><span>Pixel Art</span><span>Educational</span>
+                    </div>
+                    <a href="#" class="project-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- CodeCamp Login Page -->
+                <div class="project-item">
+                    <h3>CodeCamp Login Page</h3>
+                    <span class="project-role">💻 Frontend Developer</span>
+                    <p>A clean and modern login page mockup with email/password fields, social login buttons, and a split-panel design. Built for our HCI course to practice form design.</p>
+                    <div class="project-tags">
+                        <span>HTML</span><span>CSS</span><span>UI Design</span>
+                    </div>
+                    <a href="#" class="project-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Oriental Mindoro Tourism -->
+                <div class="project-item">
+                    <h3>Oriental Mindoro Tourism</h3>
+                    <span class="project-role">💻 Frontend Developer</span>
+                    <p>A tourism landing page showcasing the beautiful spots of Oriental Mindoro — Calapan, Naujan, Pinamalayan, and Gloria. Features a navigation bar, search, and image grid.</p>
+                    <div class="project-tags">
+                        <span>HTML</span><span>CSS</span><span>Layout</span>
+                    </div>
+                    <a href="#" class="project-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- SIT Landing Page -->
+                <div class="project-item">
+                    <h3>SIT Landing Page</h3>
+                    <span class="project-role">💻 Frontend Developer</span>
+                    <p>A modern landing page for the School of Information and Technology (DWCC). Includes a hero section, call-to-action buttons, and a vibrant pink/magenta theme.</p>
+                    <div class="project-tags">
+                        <span>HTML</span><span>CSS</span><span>Landing Page</span>
+                    </div>
+                    <a href="#" class="project-link">View project <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========== CERTIFICATIONS & ACHIEVEMENTS ========== -->
+        <section id="certifications">
+            <h2 class="section-title">Certifications & Achievements</h2>
+
+            <!-- JPCS Webinars -->
+            <div class="cert-group-title"><i class="fas fa-certificate" style="color:#2563eb;"></i> JPCS Webinar Certificates</div>
+            <div class="cert-list">
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h3>JPCS ITalks: Mobile Robotics</h3>
+                        <p>Junior Philippine Computer Society – DWCC Chapter</p>
+                        <p class="cert-sub">March 29, 2025 · Resource Speaker: Dr. Nastaran Nazar Zadeh</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="fas fa-shield-halved"></i></div>
+                    <div>
+                        <h3>JPCS ITalks: Ethical Hacking</h3>
+                        <p>Junior Philippine Computer Society – DWCC Chapter</p>
+                        <p class="cert-sub">October 12, 2024 · Resource Speaker: Mr. Cedric Peters M. Miraflor</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="fas fa-brain"></i></div>
+                    <div>
+                        <h3>JPCS ITalks: AI and Cybersecurity</h3>
+                        <p>Junior Philippine Computer Society – DWCC Chapter</p>
+                        <p class="cert-sub">September 14, 2024 · Resource Speaker: Dr. Ryndel V. Amorado</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div>
+                        <h3>JPCS ITalks: Innovation Starts Small</h3>
+                        <p>Junior Philippine Computer Society – DWCC Chapter</p>
+                        <p class="cert-sub">March 21, 2026 · Resource Speaker: Shekinah Lor B. Huyo-A</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Achievements -->
+            <div class="cert-group-title" style="margin-top: 36px;"><i class="fas fa-trophy" style="color:#2563eb;"></i> Other Achievements</div>
+            <div class="cert-list">
+                <div class="cert-item">
+                    <div class="cert-icon"><i class="fas fa-gamepad"></i></div>
+                    <div>
+                        <h3>Game Designer — DWCC Memory Game</h3>
+                        <p>Designed levels, rules, and player experience for a school project</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== EXPERIENCE / LEADERSHIP ========== -->
+        <section id="experience">
+            <h2 class="section-title">Experience & Leadership</h2>
+            <div class="exp-list">
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>Game Designer — DWCC Memory Game</h3>
+                        <span class="exp-date">2024</span>
+                    </div>
+                    <div class="exp-sub">School Project · Divine Word College of Calapan</div>
+                    <p>Designed the game mechanics, level progression, and rules for a memory matching game featuring DWCC departments and organizations. Collaborated with a developer and tester to bring the game to life.</p>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-header">
+                        <h3>Active Member, Junior Philippine Computer Society (JPCS)</h3>
+                        <span class="exp-date">2023 – Present</span>
+                    </div>
+                    <div class="exp-sub">DWCC Chapter</div>
+                    <p>Attended multiple IT webinars covering ethical hacking, mobile robotics, AI, cybersecurity, and innovation. These sessions have broadened my understanding of the tech industry beyond the classroom.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACT ========== -->
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p>I'm always happy to connect with fellow students, mentors, or anyone who wants to talk about code and learning. Feel free to reach out!</p>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:dimaalamamariane@gmail.com"><i class="fas fa-envelope"></i> dimaalamamariane@gmail.com</a>
+                    <a href="tel:+639956572994"><i class="fas fa-phone"></i> 0995 657 2994</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Ma. Mariane Bautista Dimaala · Student Portfolio · Built with HTML, CSS, and JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('show');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+                navLinks.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === "#") return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
